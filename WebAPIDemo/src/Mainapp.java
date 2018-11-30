@@ -1,8 +1,10 @@
 import java.util.Scanner;
 
+
 public class Mainapp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
+		
 		
 		//First screen will either add a new reseller or provide a list of all the current resellers(for modifying/ deleting)
 		Scanner scan = new Scanner(System.in);
