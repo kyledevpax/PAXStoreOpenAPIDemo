@@ -29,6 +29,16 @@ public class Reseller {
         reseller=new ResellerApi(Helper.url,Helper.systemAccessKey,Helper.systemAccessSecret);
     }
 
+  /*  public void printAllResellers(){
+        Reseller res = new Reseller();
+        Result<ResellerPageDTO> result=res.searchforReseller(1,10,null,null,null);
+        //System.out.println("Business Code:"+result.getBusinessCode());
+        long id=1000000512;
+        Result<ResellerDTO> searchResult=res.searchForSpecificReseller(id);
+        //System.out.println("Umm..."+searchResult.getPageInfo());
+        System.out.println("Reseller Added");
+    }*/
+
     public Result<ResellerPageDTO> searchforReseller(int pageNo, int pageSize, ResellerApi.ResellerSearchOrderBy orderBy,String name, ResellerApi.ResellerStatus status){
         Result<ResellerPageDTO> result=reseller.searchReseller(pageNo,pageSize,orderBy,name,status);
         return result;

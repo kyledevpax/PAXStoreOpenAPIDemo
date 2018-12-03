@@ -1,4 +1,5 @@
 
+import com.pax.market.api.sdk.java.api.reseller.dto.ResellerCreateRequest;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,6 +16,14 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import com.pax.market.api.sdk.java.api.base.dto.Result;
+import com.pax.market.api.sdk.java.api.reseller.ResellerApi;
+import com.pax.market.api.sdk.java.api.reseller.dto.ResellerCreateRequest;
+import com.pax.market.api.sdk.java.api.reseller.dto.ResellerDTO;
+import com.pax.market.api.sdk.java.api.reseller.dto.ResellerPageDTO;
+import com.pax.market.api.sdk.java.api.reseller.dto.ResellerUpdateRequest;
+
+
 
 public class MainappUI extends Application{
 
@@ -47,15 +56,16 @@ public class MainappUI extends Application{
         Label userName = new Label("User Name:");
         grid.add(userName, 0, 1);
 
-        Merchant mer = new Merchant();
+        //Merchant mer = new Merchant();
+        //Reseller res = new Reseller();
         Button addResellerbtn = new Button();
         addResellerbtn.setText("Add a Reseller");
         addResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 //Replace with a function call
-                mer.printMerc();
-                System.out.println("Reseller Added");
+                //res.printAllResellers();
+                System.out.println("Reseller button pressed");
             }
         });
         grid.add(addResellerbtn, 1, 1);
