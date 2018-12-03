@@ -61,11 +61,11 @@ public class MainappUI extends Application{
         Button addResellerbtn = new Button();
         addResellerbtn.setText("Add a Reseller");
         addResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
             public void handle(ActionEvent event) {
                 //Replace with a function call
                 //res.printAllResellers();
                 System.out.println("Reseller button pressed");
+                Test t = new Test();
             }
         });
         grid.add(addResellerbtn, 1, 1);
@@ -76,7 +76,6 @@ public class MainappUI extends Application{
         Button deleteResellerbtn = new Button();
         deleteResellerbtn.setText("Delete");
         deleteResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
             public void handle(ActionEvent event) {
                 //Call function to Delete the Reseller
 
