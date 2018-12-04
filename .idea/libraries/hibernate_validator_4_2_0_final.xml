@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="hibernate-validator-4.2.0.final">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/hibernate-validator-4.2.0.final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/paxstore-openapi-java-sdk-6.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-log4j12-1.7.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/validation-api-1.0.0.ga.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

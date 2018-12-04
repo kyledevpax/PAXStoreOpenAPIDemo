@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PaxStoreOpenAPIDemo.iml" filepath="$PROJECT_DIR$/PaxStoreOpenAPIDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openapidemo_jaronly.iml" filepath="$PROJECT_DIR$/openapidemo_jaronly.iml" />
     </modules>
   </component>
 </project>

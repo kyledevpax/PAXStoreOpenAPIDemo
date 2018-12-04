@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 public class Reseller {
 
 
-    private ResellerApi reseller;
+	    private ResellerApi reseller;
 
 	    /*public static void main(String args[]){
 	        if(Helper.debug)
@@ -25,78 +25,78 @@ public class Reseller {
 
 	    }*/
 
-    Reseller(){
-        reseller=new ResellerApi(Helper.url,Helper.systemAccessKey,Helper.systemAccessSecret);
-    }
+	    public static void ResellerTest(){
 
-  /*  public void printAllResellers(){
-        Reseller res = new Reseller();
-        Result<ResellerPageDTO> result=res.searchforReseller(1,10,null,null,null);
-        //System.out.println("Business Code:"+result.getBusinessCode());
-        long id=1000000512;
-        Result<ResellerDTO> searchResult=res.searchForSpecificReseller(id);
-        //System.out.println("Umm..."+searchResult.getPageInfo());
-        System.out.println("Reseller Added");
-    }*/
+			Reseller test=new Reseller();
+			Result<ResellerPageDTO> result=test.searchforReseller(1,10,null,null,null);
+			//System.out.println("Business Code:"+result.getBusinessCode());
+			long id=1000000512;
+			Result<ResellerDTO> searchResult=test.searchForSpecificReseller(id);
+			//System.out.println("Umm..."+searchResult.getPageInfo());
+		}
 
-    public Result<ResellerPageDTO> searchforReseller(int pageNo, int pageSize, ResellerApi.ResellerSearchOrderBy orderBy,String name, ResellerApi.ResellerStatus status){
-        Result<ResellerPageDTO> result=reseller.searchReseller(pageNo,pageSize,orderBy,name,status);
-        return result;
-    }
+	    Reseller(){
+	        reseller=new ResellerApi(Helper.url,Helper.systemAccessKey,Helper.systemAccessSecret);
+	    }
 
-    public Result<ResellerDTO> searchForSpecificReseller(Long id){
-        return reseller.getReseller(id);
-    }
+	    public Result<ResellerPageDTO> searchforReseller(int pageNo, int pageSize, ResellerApi.ResellerSearchOrderBy orderBy,String name, ResellerApi.ResellerStatus status){
+	        Result<ResellerPageDTO> result=reseller.searchReseller(pageNo,pageSize,orderBy,name,status);
+	        return result;
+	    }
 
-    public Result<ResellerDTO> createAReseller(ResellerCreateRequest request){
-        return reseller.createReseller(request);
-    }
+	    public Result<ResellerDTO> searchForSpecificReseller(Long id){
+	        return reseller.getReseller(id);
+	    }
 
-    public ResellerCreateRequest createResellerRequest(String name,String email, String country, String contact, String phone,String postCode, String address, String company,String parentResellerName, LinkedHashMap<String,String> entityAttributeKeyValues){
-        ResellerCreateRequest request=new ResellerCreateRequest();
-        request.setName(name);
-        request.setEmail(email);
-        request.setCountry(country);
-        request.setContact(contact);
-        request.setPhone(phone);
-        request.setPostcode(postCode);
-        request.setAddress(address);
-        request.setCompany(company);
-        request.setParentResellerName(parentResellerName);
-        request.setEntityAttributeValues(entityAttributeKeyValues);
-        return request;
-    }
+	    public Result<ResellerDTO> createAReseller(ResellerCreateRequest request){
+	        return reseller.createReseller(request);
+	    }
 
-    public Result<ResellerDTO> updateAReseller(Long id, ResellerUpdateRequest request){
-        return reseller.updateReseller(id,request);
-    }
+	    public ResellerCreateRequest createResellerRequest(String name,String email, String country, String contact, String phone,String postCode, String address, String company,String parentResellerName, LinkedHashMap<String,String> entityAttributeKeyValues){
+	        ResellerCreateRequest request=new ResellerCreateRequest();
+	        request.setName(name);
+	        request.setEmail(email);
+	        request.setCountry(country);
+	        request.setContact(contact);
+	        request.setPhone(phone);
+	        request.setPostcode(postCode);
+	        request.setAddress(address);
+	        request.setCompany(company);
+	        request.setParentResellerName(parentResellerName);
+	        request.setEntityAttributeValues(entityAttributeKeyValues);
+	        return request;
+	    }
 
-    public ResellerUpdateRequest createResellerUpdateRequest(String name,String email,String country,String contact,String phone,String postCode,String address, String company, String parentResellerName, LinkedHashMap<String,String> entityAttributeKeyValues){
-        ResellerUpdateRequest request=new ResellerUpdateRequest();
-        request.setName(name);
-        request.setEmail(email);
-        request.setCountry(country);
-        request.setContact(contact);
-        request.setPhone(phone);
-        request.setPostcode(postCode);
-        request.setAddress(address);
-        request.setCompany(company);
-        request.setParentResellerName(parentResellerName);
-        request.setEntityAttributeValues(entityAttributeKeyValues);
-        return request;
-    }
+	    public Result<ResellerDTO> updateAReseller(Long id, ResellerUpdateRequest request){
+	        return reseller.updateReseller(id,request);
+	    }
 
-    public Result<String> activateAReseller(Long id){
-        return reseller.activateReseller(id);
-    }
+	    public ResellerUpdateRequest createResellerUpdateRequest(String name,String email,String country,String contact,String phone,String postCode,String address, String company, String parentResellerName, LinkedHashMap<String,String> entityAttributeKeyValues){
+	        ResellerUpdateRequest request=new ResellerUpdateRequest();
+	        request.setName(name);
+	        request.setEmail(email);
+	        request.setCountry(country);
+	        request.setContact(contact);
+	        request.setPhone(phone);
+	        request.setPostcode(postCode);
+	        request.setAddress(address);
+	        request.setCompany(company);
+	        request.setParentResellerName(parentResellerName);
+	        request.setEntityAttributeValues(entityAttributeKeyValues);
+	        return request;
+	    }
 
-    public Result<String> disableAReseller(Long id){
-        return reseller.disableReseller(id);
-    }
+	    public Result<String> activateAReseller(Long id){
+	        return reseller.activateReseller(id);
+	    }
 
-    public Result<String> deleteAReseller(Long id){
-        return reseller.deleteReseller(id);
-    }
+	    public Result<String> disableAReseller(Long id){
+	        return reseller.disableReseller(id);
+	    }
+
+	    public Result<String> deleteAReseller(Long id){
+	        return reseller.deleteReseller(id);
+	    }
 
 	    /*  //Function has been Removed?
 	    public Result<String> updateResellersEmail(Long id, String email){
@@ -104,4 +104,4 @@ public class Reseller {
 	    }*/
 
 
-}
+	}
