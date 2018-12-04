@@ -78,4 +78,10 @@ public class Merchant {
     public Result<String> deleteAString(Long id){
         return merchantApi.deleteMerchant(id);
     }
+
+    /*
+    // No supported on PAXStore API
+    public Result<String> replaceMerchantsEmail(Long id,String email, boolean createUser){
+        // Function deprecated?
+    }*/
 }

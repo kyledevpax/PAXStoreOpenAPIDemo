@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e822fad-efdf-485a-977a-9297b95b7f2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Terminal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MerchantCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TerminalAPK.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Merchant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Merchant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Reseller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Reseller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Terminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Terminal.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,28 +27,28 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
-          <entry key="java" value="4" />
+          <entry key="java" value="6" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="4" />
+          <entry key="JAVA" value="6" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4496" />
-          <entry key="txt" value="218" />
+          <entry key="java" value="6363" />
+          <entry key="txt" value="249" />
           <entry key="xml" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4496" />
-          <entry key="PLAIN_TEXT" value="218" />
+          <entry key="JAVA" value="6363" />
+          <entry key="PLAIN_TEXT" value="249" />
           <entry key="XML" value="9" />
         </counts>
       </usages-collector>
@@ -102,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Merchant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+            <state relative-caret-position="83">
+              <caret line="53" column="53" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#143#144#0" expanded="true" />
@@ -115,8 +116,8 @@
                 <element signature="e#3462#3463#0" expanded="true" />
                 <element signature="e#3549#3550#0" expanded="true" />
                 <element signature="e#3603#3604#0" expanded="true" />
-                <element signature="e#3658#3659#0" expanded="true" />
-                <element signature="e#3691#3692#0" expanded="true" />
+                <element signature="e#3646#3647#0" expanded="true" />
+                <element signature="e#3699#3700#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,12 +126,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Terminal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="1173">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#139#140#0" expanded="true" />
                 <element signature="e#160#161#0" expanded="true" />
+                <element signature="e#739#740#0" expanded="true" />
+                <element signature="e#772#773#0" expanded="true" />
+                <element signature="e#2583#2584#0" expanded="true" />
+                <element signature="e#2616#2617#0" expanded="true" />
+                <element signature="e#2696#2697#0" expanded="true" />
+                <element signature="e#2729#2730#0" expanded="true" />
+                <element signature="e#2808#2809#0" expanded="true" />
+                <element signature="e#2841#2842#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MerchantCategory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/TerminalAPK.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="39" lean-forward="true" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -172,6 +200,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>update</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -186,9 +219,11 @@
         <option value="$PROJECT_DIR$/src/main/java/NameIdPair.java" />
         <option value="$PROJECT_DIR$/src/main/java/ResellersNameIdPairs.java" />
         <option value="$PROJECT_DIR$/src/main/java/MainappUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Terminal.java" />
         <option value="$PROJECT_DIR$/src/main/java/Reseller.java" />
         <option value="$PROJECT_DIR$/src/main/java/Merchant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Terminal.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MerchantCategory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/TerminalAPK.java" />
       </list>
     </option>
   </component>
@@ -258,7 +293,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543950366731" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543951898358" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -384,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543940843925</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Created Merchant Class">
+      <created>1543950400744</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1543950400744</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -401,7 +443,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Learn" order="0" weight="0.32995737" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.2750533" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2750533" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -410,15 +452,15 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.15059589" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.15059589" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.10509209" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="9" visible="true" weight="0.07583965" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.6132178" />
       <window_info anchor="right" id="Maven Projects" order="0" visible="true" weight="0.04957356" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -438,7 +480,8 @@
     <MESSAGE value="minor changes to ui class" />
     <MESSAGE value="Created name-id pair class" />
     <MESSAGE value="Added a function to resellers which returns name-id pairs of all resellers in first page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a function to resellers which returns name-id pairs of all resellers in first page" />
+    <MESSAGE value="Created Merchant Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Merchant Class" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class" />
@@ -494,17 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Terminal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#139#140#0" expanded="true" />
-            <element signature="e#160#161#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Reseller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -527,8 +559,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Merchant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+        <state relative-caret-position="83">
+          <caret line="53" column="53" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#143#144#0" expanded="true" />
@@ -537,9 +569,43 @@
             <element signature="e#3462#3463#0" expanded="true" />
             <element signature="e#3549#3550#0" expanded="true" />
             <element signature="e#3603#3604#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3691#3692#0" expanded="true" />
+            <element signature="e#3646#3647#0" expanded="true" />
+            <element signature="e#3699#3700#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Terminal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#139#140#0" expanded="true" />
+            <element signature="e#160#161#0" expanded="true" />
+            <element signature="e#739#740#0" expanded="true" />
+            <element signature="e#772#773#0" expanded="true" />
+            <element signature="e#2583#2584#0" expanded="true" />
+            <element signature="e#2616#2617#0" expanded="true" />
+            <element signature="e#2696#2697#0" expanded="true" />
+            <element signature="e#2729#2730#0" expanded="true" />
+            <element signature="e#2808#2809#0" expanded="true" />
+            <element signature="e#2841#2842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MerchantCategory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/TerminalAPK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="39" lean-forward="true" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
         </state>
       </provider>
     </entry>
