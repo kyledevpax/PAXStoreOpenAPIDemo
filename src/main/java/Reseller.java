@@ -17,7 +17,7 @@ public class Reseller {
         reseller=new ResellerApi(Helper.url,Helper.systemAccessKey,Helper.systemAccessSecret);
     }
 
-    public Result<ResellerPageDTO> searchforReseller(int pageNo, int pageSize, ResellerApi.ResellerSearchOrderBy orderBy,String name, ResellerApi.ResellerStatus status){
+    public Result<ResellerPageDTO> searchforResellers(int pageNo, int pageSize, ResellerApi.ResellerSearchOrderBy orderBy,String name, ResellerApi.ResellerStatus status){
         Result<ResellerPageDTO> result=reseller.searchReseller(pageNo,pageSize,orderBy,name,status);
         return result;
     }
