@@ -69,7 +69,7 @@ public class MainappUI extends Application{
                 ResellerCreateRequest request=res.createResellerRequest("reseller_2","rs1@gmail.com","USA","5566887766","4078995566",null,null,null,null,attrs);
                 Result<ResellerDTO> result= res.createAReseller(request);
                 System.out.println(result);*/
-                Result<ResellerPageDTO> result=res.searchforReseller(1,10,null,null,null);
+                Result<ResellerPageDTO> result=res.searchforReseller(1,1,null,null,null);
                 System.out.println(result.getPageInfo());
                 System.out.println(result.getMessage());
                 System.out.println(result.getBusinessCode());
