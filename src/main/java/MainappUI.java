@@ -24,6 +24,7 @@ import com.pax.market.api.sdk.java.api.reseller.dto.ResellerPageDTO;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerUpdateRequest;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 
 public class MainappUI extends Application{
@@ -69,14 +70,13 @@ public class MainappUI extends Application{
                 ResellerCreateRequest request=res.createResellerRequest("reseller_2","rs1@gmail.com","USA","5566887766","4078995566",null,null,null,null,attrs);
                 Result<ResellerDTO> result= res.createAReseller(request);
                 System.out.println(result);*/
-                Result<ResellerPageDTO> result=res.searchforReseller(1,1,null,null,null);
+                /*Result<ResellerPageDTO> result=res.searchforReseller(1,10,null,null,null);
                 System.out.println(result.getPageInfo());
-                System.out.println(result.getMessage());
-                System.out.println(result.getBusinessCode());
-                System.out.println(result.getData());
-                System.out.println(result.getValidationErrors());
-                result.getData();
-                System.out.println(result);
+                List<ResellerPageDTO> list=result.getPageInfo().getDataSet();
+                for(ResellerPageDTO page:list){
+                    System.out.println(page.getName());
+                }*/
+                System.out.println(res.getNameandIDofResellers());
             }
         });
         grid.add(addResellerbtn, 1, 1);

@@ -5,7 +5,9 @@ import com.pax.market.api.sdk.java.api.reseller.dto.ResellerDTO;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerPageDTO;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerUpdateRequest;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class Reseller {
 
@@ -18,6 +20,26 @@ public class Reseller {
     public Result<ResellerPageDTO> searchforReseller(int pageNo, int pageSize, ResellerApi.ResellerSearchOrderBy orderBy,String name, ResellerApi.ResellerStatus status){
         Result<ResellerPageDTO> result=reseller.searchReseller(pageNo,pageSize,orderBy,name,status);
         return result;
+    }
+
+    public NameIdPair[] getNameandIDofResellers(){
+        NameIdPair pairs[];
+        Result<ResellerPageDTO> result=reseller.searchReseller(1,100,null,null,null);
+        List<ResellerPageDTO> pages=result.getPageInfo().getDataSet();
+        System.out.println(pages.size());
+        pairs=new NameIdPair[pages.size()];
+        System.out.println(pairs.length);
+        int i=0;
+        for(ResellerPageDTO page:pages){
+            System.out.println("Iteration:"+i);
+            System.out.println(page.getId());
+            System.out.println(page.getName());
+            System.out.println("------------------------------");
+           pairs[i].setId(page.getId());
+           pairs[i].setName(page.getName());
+           i++;
+        }
+        return pairs;
     }
 
     public Result<ResellerDTO> searchForSpecificReseller(Long id){
