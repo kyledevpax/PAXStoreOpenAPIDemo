@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: javax.validation:validation-api:1.0.0.GA">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar!/" />
     </CLASSES>
     <JAVADOC>
@@ -8,6 +9,15 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar!/" />
+=======
+      <root url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar!/" />
+>>>>>>> Maven
     </SOURCES>
   </library>
 </component>

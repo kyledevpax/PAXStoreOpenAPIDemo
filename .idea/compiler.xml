@@ -6,11 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
         <module name="openapidemo_jaronly" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="openapidemo_jaronly" target="1.5" />
+=======
+        <module name="PaxStoreOpenAPIDemo" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PaxStoreOpenAPIDemo" target="1.5" />
+>>>>>>> Maven
     </bytecodeTargetLevel>
   </component>
 </project>

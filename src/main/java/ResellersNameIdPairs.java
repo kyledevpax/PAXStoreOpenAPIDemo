@@ -30,4 +30,8 @@ public class ResellersNameIdPairs {
     public int getTopIndex(){
         return top;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Maven
