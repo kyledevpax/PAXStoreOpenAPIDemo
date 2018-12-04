@@ -76,10 +76,11 @@ public class MainappUI extends Application{
                 for(ResellerPageDTO page:list){
                     System.out.println(page.getName());
                 }*/
-                ResellersNameIdPairs pairs=res.getNameandIDofResellers();
+                /*ResellersNameIdPairs pairs=res.getNameandIDofResellers();
                 int limit=pairs.getTopIndex();
                 for(int i=0;i<=limit;i++)
-                System.out.println(pairs.getId(i)+","+pairs.getName(i));
+                System.out.println(pairs.getId(i)+","+pairs.getName(i));*/
+                res.searchForSpecificReseller(new Long(1000000540));
             }
         });
         grid.add(addResellerbtn, 1, 1);
