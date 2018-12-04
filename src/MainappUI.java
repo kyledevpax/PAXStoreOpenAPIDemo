@@ -1,3 +1,4 @@
+/*
 
 import com.pax.market.api.sdk.java.api.base.dto.Result;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerDTO;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 public class MainappUI extends Application{
-	
+
 	public static void main(String[] args) {
         launch(args);
     }
@@ -58,9 +59,8 @@ public class MainappUI extends Application{
             @Override
             public void handle(ActionEvent event) {
             	//Replace with a function call
-            	//mer.printMerc();
-                test.ResellerTest();
-            }
+            	mer.printMerc();
+                            }
         });
         grid.add(addResellerbtn, 1, 1);
         
@@ -85,6 +85,6 @@ public class MainappUI extends Application{
         
         primaryStage.show();
     }
-	
 }
 
+*/
