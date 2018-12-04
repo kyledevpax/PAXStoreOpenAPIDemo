@@ -1,20 +1,31 @@
 public class NameIdPair {
-    String name;
-    Long id;
+    String name[];
+    String id[];
+    int top;
 
-    public String getName(){
-        return name;
+    NameIdPair(int size){
+        name=new String[size];
+        id=new String[size];
     }
 
-    public void setName(String name){
-        this.name=name;
+    public String getName(int index){
+        return name[index];
     }
 
-    public Long getId(){
-        return id;
+    public void setName(int index,String name){
+        this.name[index]=name;
     }
 
-    public void setId(Long id){
-        this.id=id;
+    public String getId(int index){
+        return id[index];
+    }
+
+    public void setId(int index,Long id){
+        top=index;
+        this.id[index]= String.valueOf(id);
+    }
+
+    public int getTopIndex(){
+        return top;
     }
 }

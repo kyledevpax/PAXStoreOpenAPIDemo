@@ -22,21 +22,22 @@ public class Reseller {
         return result;
     }
 
-    public NameIdPair[] getNameandIDofResellers(){
-        NameIdPair pairs[];
+    public NameIdPair getNameandIDofResellers(){
+        NameIdPair pairs;
         Result<ResellerPageDTO> result=reseller.searchReseller(1,100,null,null,null);
         List<ResellerPageDTO> pages=result.getPageInfo().getDataSet();
         System.out.println(pages.size());
-        pairs=new NameIdPair[pages.size()];
-        System.out.println(pairs.length);
+        pairs=new NameIdPair(pages.size());
         int i=0;
         for(ResellerPageDTO page:pages){
-            System.out.println("Iteration:"+i);
+            /*System.out.println("Iteration:"+i);
             System.out.println(page.getId());
             System.out.println(page.getName());
-            System.out.println("------------------------------");
-           pairs[i].setId(page.getId());
-           pairs[i].setName(page.getName());
+            System.out.println("------------------------------");*/
+           /*pairs[i].setId(page.getId());*/
+           pairs.setId(i,page.getId());
+           /*pairs[i].setName(page.getName());*/
+           pairs.setName(i,page.getName());
            i++;
         }
         return pairs;
