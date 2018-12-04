@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="hibernate-validator-4.2.0.final">
+  <library name="paxstore-openapi-java-sdk-6.0.2">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/paxstore-openapi-java-sdk-6.0.2.jar!/" />
     </CLASSES>

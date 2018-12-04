@@ -16,6 +16,7 @@ public class Main {
 
         boolean programRunning = true;
         Reseller res = new Reseller();
+        ResellersNameIdPairs resNIDP;
 
         //============delete=============
         LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
@@ -70,13 +71,24 @@ public class Main {
                     res.createAReseller(request);
 
 
-                } else if (choice.equals("2")) {
+                }
+                else if (choice.equals("2")) {
                     // call the function to List all of the resellers
                     //choose a reseller
 
+                    resNIDP = res.getNameandIDofResellers();
+                    System.out.println("\nList of Resellers (Pick one)");
+                    for (int i =0; i<= resNIDP.getTopIndex();i++){
+                        System.out.println((i+1) +". "+ resNIDP.getName(i));
+                    }
                     //Create a function to Display the information for the Reseller and provide the option to Modify or Delete
-                    int resellerChoice = 1;
-                    if (resellerChoice == 1) {
+
+                    String resellerChoice = scan.next();
+                    int num = Integer.parseInt(resellerChoice);
+
+                    res.searchForSpecificReseller(new Long(resNIDP.getId(num -1)));
+
+                    if (resellerChoice.equals("1")) {
                         //Third screen will display options for a particular Reseller
 
                         //Print the name of the Reseller at the top followed by:
@@ -100,7 +112,8 @@ public class Main {
                             }
                         }
                     }
-                } else {
+                }
+                else {
                     System.out.println("Invalid Entry");
                 }
 
