@@ -1,9 +1,11 @@
-public class NameIdPair {
+//Modify this class. Use a better data structure. Current one has many issues(Only works for correct inputs).
+
+public class ResellersNameIdPairs {
     String name[];
     String id[];
     int top;
 
-    NameIdPair(int size){
+    ResellersNameIdPairs(int size){
         name=new String[size];
         id=new String[size];
     }

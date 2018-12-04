@@ -76,7 +76,7 @@ public class MainappUI extends Application{
                 for(ResellerPageDTO page:list){
                     System.out.println(page.getName());
                 }*/
-                NameIdPair pairs=res.getNameandIDofResellers();
+                ResellersNameIdPairs pairs=res.getNameandIDofResellers();
                 int limit=pairs.getTopIndex();
                 for(int i=0;i<=limit;i++)
                 System.out.println(pairs.getId(i)+","+pairs.getName(i));
