@@ -26,6 +26,20 @@ public class Merchant {
         return merchantApi.getMerchant(merchantId);
     }
 
+    public NameIdPairs getNameandIDofMerchants(){
+        NameIdPairs pairs;
+        Result<MerchantPageDTO> result=merchantApi.searchMerchant(1,100,null,null,null);
+        List<MerchantPageDTO> pages=result.getPageInfo().getDataSet();
+        pairs=new NameIdPairs(pages.size());
+        int i=0;    //index
+        for(MerchantPageDTO page:pages){
+            pairs.setId(i,page.getId());
+            pairs.setName(i,page.getName());
+            i++;    //increment index
+        }
+        return pairs;
+    }
+
     public Result<MerchantDTO> createAMerchant(MerchantCreateRequest request){
         return merchantApi.createMerchant(request);
     }
@@ -42,6 +56,7 @@ public class Merchant {
         request.setAddress(address);
         request.setDescription(description);
         // No way to set the create user flag? no function present in merchant create request
+
         request.setMerchantCategoryNames(merchantCategoryCodes);
         request.setEntityAttributeValues(entityAttributeValues);
         return request;
@@ -75,7 +90,7 @@ public class Merchant {
         return merchantApi.disableMerchant(id);
     }
 
-    public Result<String> deleteAString(Long id){
+    public Result<String> deleteAMerchant(Long id){
         return merchantApi.deleteMerchant(id);
     }
 

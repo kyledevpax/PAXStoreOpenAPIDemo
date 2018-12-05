@@ -1,10 +1,14 @@
+import com.pax.market.api.sdk.java.api.merchant.dto.MerchantCreateRequest;
+import com.pax.market.api.sdk.java.api.merchant.dto.MerchantUpdateRequest;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerCreateRequest;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerUpdateRequest;
-import sun.awt.image.ImageWatched;
+import com.pax.market.api.sdk.java.api.terminal.TerminalApi;
+import com.pax.market.api.sdk.java.api.terminal.dto.TerminalCreateRequest;
 
-import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
+
+import static com.pax.market.api.sdk.java.api.terminal.TerminalApi.*;
 
 
 public class Main {
@@ -17,7 +21,12 @@ public class Main {
 
         boolean programRunning = true;
         Reseller res = new Reseller();
-        ResellersNameIdPairs resNIDP;
+        NameIdPairs resNIDP;
+        NameIdPairs mercNIDP;
+        NameIdPairs termNIDP;
+
+        Merchant merc = new Merchant();
+        Terminal term = new Terminal();
 
         //============delete=============
         LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
@@ -86,29 +95,28 @@ public class Main {
 
                     String resellerChoice = scan.next();
                     int resNum = Integer.parseInt(resellerChoice);
+                    Long chosenResID = new Long(resNIDP.getId(resNum-1));
+                    String chosenResName = resNIDP.getName(resNum-1);
 
+                    Helper.printResellerResult(res.searchForSpecificReseller(chosenResID));
 
-                    Helper.print(res.searchForSpecificReseller(new Long(resNIDP.getId(resNum -1))));
-
-                    System.out.println("\n======================\nNEED TO PRINT THE RESELLER MERCHANTS\n====================\n");
-
-
-                    //Third screen will display options for a particular Reseller
 
                     //Print the name of the Reseller at the top followed by:
-                     System.out.println("\nThese are the options for " + resNIDP.getName(resNum - 1) );//DELETE THIS LINE LATER
+                     System.out.println("\nThese are the options for " + chosenResName );
                      System.out.println("1. Modify Reseller information");
                      System.out.println("2. Activate Reseller");
                      System.out.println("3. Deactivate Reseller");
                      System.out.println("4. Add a merchant");
-                     System.out.println("5. Delete Reseller");
-                     System.out.println("6. Return to main menu");
+                     System.out.println("5. List of Merchants");
+                     System.out.println("6. Delete Reseller");
+                     System.out.println("7. Return to main menu");
 
                      String choiceForAReseller = scan.next();
 
+                     //Modify Reseller information
                      if(choiceForAReseller.equals("1")){
-                         System.out.println("The current information for " + resNIDP.getName(resNum -1) + " is:");
-                         Helper.print(res.searchForSpecificReseller(new Long(resNIDP.getId(resNum-1))));
+                         System.out.println("The current information for " + chosenResName + " is:");
+                         Helper.printResellerResult(res.searchForSpecificReseller(chosenResID));
                          System.out.println("Please Enter the updated information for the Reseller:");
 
                          System.out.print("Name: ");
@@ -136,36 +144,197 @@ public class Main {
                          String company = scan.next();
 
                          ResellerUpdateRequest request = res.createResellerUpdateRequest(name, email, country, contact, phone, postCode, address, company, null, map);
-                         res.updateAReseller(new Long(resNIDP.getId(resNum -1)), request);
+                         res.updateAReseller(chosenResID, request);
                      }
+                     //Activate Reseller
                      else if(choiceForAReseller.equals("2")){
-                         res.activateAReseller(new Long(resNIDP.getId(resNum -1)));
+                         res.activateAReseller(chosenResID);
                      }
+                     //Deactivate Reseller
                      else if(choiceForAReseller.equals("3")){
-                         res.disableAReseller(new Long(resNIDP.getId(resNum -1)));
+                         res.disableAReseller(chosenResID);
                      }
+                     //Add a merchant to the selected Reseller
                      else if(choiceForAReseller.equals("4")){
-                        //add a merchant
+                         System.out.println("Please enter the following information about the merchant:");
+
+                         System.out.print("Name: ");
+                         String name = scan.next();
+
+                         System.out.print("Email: ");
+                         String email = scan.next();
+
+                         String resellerName = chosenResName;
+
+                         System.out.print("Contact (company phone");
+                         String contact = scan.next();
+
+                         System.out.print("Country: ");
+                         String country = scan.next();
+
+                         System.out.print("Phone: ");
+                         String phone = scan.next();
+
+                         System.out.print("Post Code: ");
+                         String postCode = scan.next();
+
+                         System.out.print("Address: ");
+                         String address = scan.next();
+
+                         System.out.print("Description: ");
+                         String description = scan.next();
+
+                         boolean createUserFlag = true;
+
+                         MerchantCreateRequest mercRequest = merc.CreateMerchantRequest(name, email, resellerName , contact, country, phone, postCode, address, description, createUserFlag, null, null);
+                         merc.createAMerchant(mercRequest);
+
+
                      }
+                     //List the merchants for the chosen Reseller
                      else if(choiceForAReseller.equals("5")){
-                         //Delete a reseller
+
+                         mercNIDP = merc.getNameandIDofMerchants();
+                         System.out.println("\nList of merchants for " + chosenResName+ " (Pick one)");
+                         for (int i =0; i<= mercNIDP.getTopIndex();i++){
+                             System.out.println((i+1) +". "+ mercNIDP.getName(i));
+                         }
+
+                         String merchantChoice = scan.next();
+                         int mercNum = Integer.parseInt(merchantChoice);
+                         Long chosenMercID = new Long(mercNIDP.getId(mercNum-1));
+                         String chosenMercName = mercNIDP.getName(mercNum-1);
+
+                         Helper.printMerchantResult(merc.searchForSpecificMerchant(chosenMercID));
+
+                         System.out.println("\nThese are the options for " + chosenMercName);
+                         System.out.println("1. Modify Merchant information");
+                         System.out.println("2. Activate Merchant");
+                         System.out.println("3. Deactivate Merchant");
+                         System.out.println("4. Add a Terminal");
+                         System.out.println("5. List of Terminals");
+                         System.out.println("6. Delete Merchant");
+                         System.out.println("7. Return to main menu");
+
+                         String choiceForAMerchant = scan.next();
+
+                         //Modify merchant information
+                         if(choiceForAMerchant.equals("1")){
+                             System.out.println("The current information for " + chosenMercName + " is:");
+                             Helper.printMerchantResult(merc.searchForSpecificMerchant(chosenMercID));
+                             System.out.println("Please Enter the updated information for the Merchant:");
+
+                             System.out.print("Name: ");
+                             String name = scan.next();
+
+                             System.out.print("Email: ");
+                             String email = scan.next();
+
+                             String resellerName = chosenResName;
+
+                             System.out.print("Contact (company phone");
+                             String contact = scan.next();
+
+                             System.out.print("Country: ");
+                             String country = scan.next();
+
+                             System.out.print("Phone: ");
+                             String phone = scan.next();
+
+                             System.out.print("Post Code: ");
+                             String postCode = scan.next();
+
+                             System.out.print("Address: ");
+                             String address = scan.next();
+
+                             System.out.print("Description: ");
+                             String description = scan.next();
+
+                             String createUserFlag = "true";
+
+                             MerchantUpdateRequest mercRequest = merc.createMerchantUpdateRequest(name, email, resellerName , contact, country, phone, postCode, address, description, createUserFlag, null, null);
+                             merc.updateAMerchant(chosenMercID, mercRequest);
+                         }
+                         //Activate Merchant
+                         else if(choiceForAMerchant.equals("2")){
+                            merc.activateAMerchant(chosenMercID);
+                         }
+                         //Deactivate Merchant
+                         else if(choiceForAMerchant.equals("3")){
+                             merc.disableAMerchant(chosenMercID);
+                         }
+                         //Add a terminal
+                         else if(choiceForAMerchant.equals("4")){
+                            System.out.println("Please enter the following information about the terminal:");
+
+                            System.out.print("Name: ");
+                            String name = scan.next();
+
+                            System.out.print("TID: ");
+                            String tid = scan.next();
+
+                            System.out.print("Serial Number: ");
+                            String serialNo = scan.next();
+
+                            String merchantName = chosenMercName;
+
+                            String resellerName = chosenResName;
+
+                            System.out.print("Model Name: ");
+                            String modelName = scan.next();
+
+                            System.out.print("Location: ");
+                            String location = scan.next();
+
+                            TerminalCreateRequest termRequest = term.CreateTerminalCreateRequest(name, tid, serialNo, merchantName, resellerName, modelName, location, TerminalStatus.Inactive);
+                            term.createATerminal(termRequest);
+                         }
+                         //List of Terminals
+                         else if(choiceForAMerchant.equals("5")){
+                            
+                         }
+                         //Delete Merchant
+                         else if(choiceForAMerchant.equals("6")){
+                             System.out.println("Are you sure? Y/N");
+                             String delChoice = scan.next();
+                             if (delChoice.equals("Y") || delChoice.equals("y")) {
+                                 //Call function to delete a Merchant
+                                 merc.deleteAMerchant(chosenMercID);
+                             } else if (delChoice.equals("N") || delChoice.equals("n")) {
+                                 //Return back to Main page
+                                 continue;
+                             } else {
+                                 System.out.println("Invalid Entry");
+                             }
+                         }
+                         //Return to Main Menu
+                         else if(choiceForAMerchant.equals("7")){
+                             continue;
+                         }
+                         else{
+                             System.out.println("Invalid choice. Returning to main menu.");
+                             continue;
+                         }
+                     }
+                     //Delete a Reseller
+                     else if(choiceForAReseller.equals("6")){
                          System.out.println("Are you sure? Y/N");
                          String delChoice = scan.next();
                          if (delChoice.equals("Y") || delChoice.equals("y")) {
                              //Call function to delete a Reseller
-                             res.deleteAReseller(new Long(resNIDP.getId(resNum -1)));
+                             res.deleteAReseller(chosenResID);
                          } else if (delChoice.equals("N") || delChoice.equals("n")) {
-                             //Return back to Reseller page
+                             //Return back to Main page
                              continue;
                          } else {
                              System.out.println("Invalid Entry");
                          }
                      }
-                     else if(choiceForAReseller.equals("6")){
+                     else if(choiceForAReseller.equals("7")){
                          continue;
                      }
                      else{
-                         System.out.println("Invalid choice returning to main menu");
+                         System.out.println("Invalid choice. Returning to main menu");
                          continue;
                      }
 
