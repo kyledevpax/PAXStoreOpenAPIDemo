@@ -79,14 +79,17 @@ public class Reseller {
     }
 
     public Result<String> activateAReseller(Long id){
+        System.out.println("Reseller Added");
         return reseller.activateReseller(id);
     }
 
     public Result<String> disableAReseller(Long id){
+        System.out.println("Reseller Disable");
         return reseller.disableReseller(id);
     }
 
     public Result<String> deleteAReseller(Long id){
+        System.out.println("Reseller Deleted");
         return reseller.deleteReseller(id);
     }
 }

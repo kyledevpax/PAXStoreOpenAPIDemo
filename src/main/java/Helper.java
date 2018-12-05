@@ -9,6 +9,6 @@ public class Helper {
 
     static void print(Result<ResellerDTO> result){
         ResellerDTO data=result.getData();
-        System.out.println("ID:"+data.getId()+"\nName:"+data.getName()+"\nAddress:"+data.getAddress()+"\nCompany"+data.getCompany()+"\nContact:"+data.getContact()+"\nCountry"+data.getCountry()+"\nEmail"+data.getEmail()+"\nPhone"+data.getPhone()+"\nPostCode:"+data.getPostcode()+"\nStatus"+data.getStatus()+"\nEntity Attribute Values:"+data.getEntityAttributeValues());
+        System.out.println("\nID: "+data.getId()+"\nName: "+data.getName()+"\nAddress: "+data.getAddress()+"\nCompany: "+data.getCompany()+"\nContact: "+data.getContact()+"\nCountry: "+data.getCountry()+"\nEmail: "+data.getEmail()+"\nPhone: "+data.getPhone()+"\nPostCode: "+data.getPostcode()+"\nStatus: "+data.getStatus()+"\nEntity Attribute Values: "+data.getEntityAttributeValues());
     }
 }
