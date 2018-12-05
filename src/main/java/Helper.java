@@ -1,4 +1,5 @@
 import com.pax.market.api.sdk.java.api.base.dto.Result;
+import com.pax.market.api.sdk.java.api.merchant.dto.MerchantDTO;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerDTO;
 
 public class Helper {
@@ -7,8 +8,13 @@ public class Helper {
     static String systemAccessSecret="V4XTQ5DADRRC88GMZ97ETH5E47E5AHIUGH1LCPPL";
     static String url="https://www.paxstores.com/p-market-api";
 
-    static void printResult(Result<ResellerDTO> result){
+    static void printResellerResult(Result<ResellerDTO> result){
         ResellerDTO data=result.getData();
         System.out.println("ID:"+data.getId()+"\nName:"+data.getName()+"\nAddress:"+data.getAddress()+"\nCompany"+data.getCompany()+"\nContact:"+data.getContact()+"\nCountry"+data.getCountry()+"\nEmail"+data.getEmail()+"\nPhone"+data.getPhone()+"\nPostCode:"+data.getPostcode()+"\nStatus"+data.getStatus()+"\nEntity Attribute Values:"+data.getEntityAttributeValues());
+    }
+
+    static void printMerchantResult(Result<MerchantDTO> result){
+        MerchantDTO data=result.getData();
+        System.out.println("ID:"+data.getId()+"\nName:"+data.getName()+"\nReseller:"+data.getReseller()+"\nCountry:"+data.getCountry()+"\nContact"+data.getContact()+"\nEmail"+data.getEmail()+"\nPhone"+data.getPhone()+"\nStatus"+data.getStatus()+"\nEntityAttributeValues:"+data.getEntityAttributeValues()+"\nMerchantCategory:"+data.getMerchantCategory());
     }
 }

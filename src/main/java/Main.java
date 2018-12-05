@@ -1,7 +1,5 @@
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerCreateRequest;
-import sun.awt.image.ImageWatched;
 
-import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -16,7 +14,7 @@ public class Main {
 
         boolean programRunning = true;
         Reseller res = new Reseller();
-        ResellersNameIdPairs resNIDP;
+        NameIdPairs resNIDP;
 
         //============delete=============
         LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();

@@ -5,7 +5,6 @@ import com.pax.market.api.sdk.java.api.reseller.dto.ResellerDTO;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerPageDTO;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerUpdateRequest;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -22,11 +21,11 @@ public class Reseller {
         return result;
     }
 
-    public ResellersNameIdPairs getNameandIDofResellers(){
-        ResellersNameIdPairs pairs;
+    public NameIdPairs getNameandIDofResellers(){
+        NameIdPairs pairs;
         Result<ResellerPageDTO> result=reseller.searchReseller(1,100,null,null,null);
         List<ResellerPageDTO> pages=result.getPageInfo().getDataSet();
-        pairs=new ResellersNameIdPairs(pages.size());
+        pairs=new NameIdPairs(pages.size());
         int i=0;
         for(ResellerPageDTO page:pages){
            pairs.setId(i,page.getId());
