@@ -1,6 +1,7 @@
 import com.pax.market.api.sdk.java.api.base.dto.Result;
 import com.pax.market.api.sdk.java.api.merchant.dto.MerchantDTO;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerDTO;
+import com.pax.market.api.sdk.java.api.terminal.dto.TerminalDTO;
 
 public class Helper {
     static boolean debug=false;
@@ -10,7 +11,8 @@ public class Helper {
 
     static void printResellerResult(Result<ResellerDTO> result){
         ResellerDTO data=result.getData();
-        System.out.println( "\nID: "+data.getId()+
+        System.out.println("\n\n\n\nHere is the information for "+data.getName());
+        System.out.println( "ID: "+data.getId()+
                             "\nName: "+data.getName()+
                             "\nEmail: "+data.getEmail()+
                             "\nCountry: "+data.getCountry()+
@@ -25,10 +27,11 @@ public class Helper {
 
     static void printMerchantResult(Result<MerchantDTO> result){
         MerchantDTO data=result.getData();
-        System.out.println( "\nID: "+data.getId()+
+        System.out.println("\n\n\n\nHere is the information for "+data.getName());
+        System.out.println( "ID: "+data.getId()+
                             "\nName: "+data.getName()+
                             "\nEmail: "+data.getEmail()+
-                            "\nReseller: "+data.getReseller()+
+                            "\nReseller: "+data.getReseller().getName()+
                             "\nContact: "+data.getContact()+
                             "\nCountry: "+data.getCountry()+
                             "\nPhone: "+data.getPhone()+
@@ -38,5 +41,19 @@ public class Helper {
                             "\nStatus: "+data.getStatus()+
                             "\nMerchantCategory: "+data.getMerchantCategory()+
                             "\nEntityAttributeValues: "+data.getEntityAttributeValues());
+    }
+
+    static void printTerminalResult(Result<TerminalDTO> result){
+        TerminalDTO data=result.getData();
+        System.out.println("\n\n\n\nHere is the information for "+data.getName());
+        System.out.println( "ID: "+data.getId()+
+                "\nName: "+data.getName()+
+                "\nTID: "+data.getTid()+
+                "\nSerial Number: "+data.getSerialNo()+
+                "\nMerchant Name: "+data.getMerchantName()+
+                "\nReseller Name: "+data.getResellerName()+
+                "\nModel Name: "+data.getModelName()+
+                "\nLocation: (can't be returned)"+
+                "\nTerminal Status: "+data.getStatus());
     }
 }

@@ -4,6 +4,10 @@ import com.pax.market.api.sdk.java.api.reseller.dto.ResellerCreateRequest;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerUpdateRequest;
 import com.pax.market.api.sdk.java.api.terminal.TerminalApi;
 import com.pax.market.api.sdk.java.api.terminal.dto.TerminalCreateRequest;
+import com.pax.market.api.sdk.java.api.terminal.dto.TerminalUpdateRequest;
+import com.pax.market.api.sdk.java.api.terminalApk.TerminalApkApi;
+import com.pax.market.api.sdk.java.api.terminalApk.dto.CreateTerminalApkRequest;
+import sun.awt.image.ImageWatched;
 
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -27,6 +31,7 @@ public class Main {
 
         Merchant merc = new Merchant();
         Terminal term = new Terminal();
+        TerminalAPK termApk = new TerminalAPK();
 
         //============delete=============
         LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
@@ -195,7 +200,7 @@ public class Main {
                      else if(choiceForAReseller.equals("5")){
 
                          mercNIDP = merc.getNameandIDofMerchants();
-                         System.out.println("\nList of merchants for " + chosenResName+ " (Pick one)");
+                         System.out.println("\n\n\n\nList of merchants for " + chosenResName+ " (Pick one)");
                          for (int i =0; i<= mercNIDP.getTopIndex();i++){
                              System.out.println((i+1) +". "+ mercNIDP.getName(i));
                          }
@@ -205,12 +210,9 @@ public class Main {
                          Long chosenMercID = new Long(mercNIDP.getId(mercNum-1));
                          String chosenMercName = mercNIDP.getName(mercNum-1);
 
-                         System.out.println("=============================================");
-                         System.out.println("Here is the information for "+ chosenMercName);
-                         System.out.println("=============================================");
                          Helper.printMerchantResult(merc.searchForSpecificMerchant(chosenMercID));
 
-                         System.out.println("\nThese are the options for " + chosenMercName);
+                         System.out.println("\n\nThese are the options for " + chosenMercName);
                          System.out.println("1. Modify Merchant information");
                          System.out.println("2. Activate Merchant");
                          System.out.println("3. Deactivate Merchant");
@@ -294,7 +296,116 @@ public class Main {
                          }
                          //List of Terminals
                          else if(choiceForAMerchant.equals("5")){
+                             termNIDP = term.getNameandIDofTerminals();
+                             System.out.println("\n\n\n\nList of terminals for " + chosenMercName+ " (Pick one)");
+                             for (int i =0; i<= termNIDP.getTopIndex();i++){
+                                 System.out.println((i+1) +". "+ termNIDP.getName(i));
+                             }
 
+                             String terminalChoice = scan.next();
+                             int termNum = Integer.parseInt(terminalChoice);
+                             Long chosenTermID = new Long(termNIDP.getId(termNum-1));
+                             String chosenTermName = termNIDP.getName(termNum-1);
+
+                             Helper.printTerminalResult(term.searchForSpecificTerminal(chosenTermID));
+
+                             System.out.println("\n\nThese are the options for " + chosenTermName);
+                             System.out.println("1. Modify Terminal information");
+                             System.out.println("2. Activate Terminal");
+                             System.out.println("3. Deactivate Terminal");
+                             System.out.println("4. Delete Terminal");
+                             System.out.println("5. Push an application");
+                             System.out.println("6. Return to main menu");
+
+                             String choiceForATerminal = scan.next();
+
+                             //Modify terminal information
+                             if(choiceForATerminal.equals("1")){
+                                 System.out.println("The current information for " + chosenTermName + " is:");
+                                 Helper.printTerminalResult(term.searchForSpecificTerminal(chosenTermID));
+                                 System.out.println("Please Enter the updated information for the Terminal:");
+
+                                 System.out.print("Name: ");
+                                 String name = scan.next();
+
+                                 System.out.print("TID: ");
+                                 String tid = scan.next();
+
+                                 System.out.print("Serial Number: ");
+                                 String serialNo = scan.next();
+
+                                 System.out.println("Merchant Name: ");
+                                 String merchantName = scan.next();
+
+                                 System.out.println("Reseller Name: ");
+                                 String resellerName = scan.next();
+
+                                 System.out.print("Model Name: ");
+                                 String modelName = scan.next();
+
+                                 System.out.print("Location: ");
+                                 String location = scan.next();
+
+                                 TerminalUpdateRequest termRequest = term.createTerminalUpdateRequest( name, tid, serialNo, merchantName, resellerName, modelName, location);
+                                 term.updateATerminal(chosenTermID, termRequest);
+
+                             }
+                             //Activate a terminal
+                             else if(choiceForATerminal.equals("2")){
+                                 term.activateATerminal(chosenTermID);
+                             }
+                             //Deactivate a terminal
+                             else if(choiceForATerminal.equals("3")){
+                                 term.disableATerminal(chosenTermID);
+                             }
+                             //delete a terminal
+                             else if(choiceForATerminal.equals("4")){
+                                 System.out.println("Are you sure? Y/N");
+                                 String delChoice = scan.next();
+                                 if (delChoice.equals("Y") || delChoice.equals("y")) {
+                                     //Call function to delete a terminal
+                                     term.deleteATerminal(chosenTermID);
+                                 } else if (delChoice.equals("N") || delChoice.equals("n")) {
+                                     //Return back to Main page
+                                     continue;
+                                 } else {
+                                     System.out.println("Invalid Entry");
+                                 }
+                             }
+                             //push an application
+                             else if(choiceForATerminal.equals("5")){
+
+                                 System.out.println("Enter the following information about the app you want to push: ");
+
+                                 System.out.print("TID: ");
+                                 String tid = scan.next();
+
+                                 System.out.print("Serial Number");
+                                 String serialNo = scan.next();
+
+                                 System.out.print("Package Name: ");
+                                 String packageName = scan.next();
+
+                                 System.out.print("Version: ");
+                                 String version = scan.next();
+
+                                 System.out.print("Template Name: ");
+                                 String templateName = scan.next();
+
+                                 System.out.print("Parameters: (skip)");
+
+                                 CreateTerminalApkRequest termRequest = termApk.createPushAPKRequest( tid, serialNo, packageName, version, templateName, map);
+                                 termApk.pushAPK(termRequest);
+
+                             }
+                             //Return to main menu
+                             else if(choiceForATerminal.equals("6")){
+                                 continue;
+                             }
+                             else{
+                                 System.out.println("Invalid choice. Returning to main menu.");
+                                 continue;
+                             }
                          }
                          //Delete Merchant
                          else if(choiceForAMerchant.equals("6")){
