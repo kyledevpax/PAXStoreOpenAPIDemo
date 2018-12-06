@@ -199,7 +199,7 @@ public class Main {
                      //List the merchants for the chosen Reseller
                      else if(choiceForAReseller.equals("5")){
 
-                         mercNIDP = merc.getNameandIDofMerchants();
+                         mercNIDP = merc.getNameandIDofMerchants(chosenResName);
                          System.out.println("\n\n\n\nList of merchants for " + chosenResName+ " (Pick one)");
                          for (int i =0; i<= mercNIDP.getTopIndex();i++){
                              System.out.println((i+1) +". "+ mercNIDP.getName(i));

@@ -26,7 +26,7 @@ public class Merchant {
         return merchantApi.getMerchant(merchantId);
     }
 
-    public NameIdPairs getNameandIDofMerchants(){
+    /*public NameIdPairs getNameandIDofMerchants(){
         NameIdPairs pairs;
         Result<MerchantPageDTO> result=merchantApi.searchMerchant(1,100,null, null,null);
         List<MerchantPageDTO> pages=result.getPageInfo().getDataSet();
@@ -36,6 +36,21 @@ public class Merchant {
             pairs.setId(i,page.getId());
             pairs.setName(i,page.getName());
             i++;    //increment index
+        }
+        return pairs;
+    }*/
+    public NameIdPairs getNameandIDofMerchants(String name){
+        NameIdPairs pairs;
+        Result<MerchantPageDTO> result=merchantApi.searchMerchant(1,100,null,null,null);
+        List<MerchantPageDTO> pages=result.getPageInfo().getDataSet();
+        pairs=new NameIdPairs(pages.size());
+        int i=0;    //index
+        for(MerchantPageDTO page:pages){
+            if(page.getReseller().getName().equals(name)) {
+                pairs.setId(i, page.getId());
+                pairs.setName(i, page.getName());
+                i++;    //increment index
+            }
         }
         return pairs;
     }
