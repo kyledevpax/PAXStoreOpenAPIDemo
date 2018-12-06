@@ -28,7 +28,7 @@ public class Merchant {
 
     public NameIdPairs getNameandIDofMerchants(){
         NameIdPairs pairs;
-        Result<MerchantPageDTO> result=merchantApi.searchMerchant(1,100,null,null,null);
+        Result<MerchantPageDTO> result=merchantApi.searchMerchant(1,100,null, null,null);
         List<MerchantPageDTO> pages=result.getPageInfo().getDataSet();
         pairs=new NameIdPairs(pages.size());
         int i=0;    //index
