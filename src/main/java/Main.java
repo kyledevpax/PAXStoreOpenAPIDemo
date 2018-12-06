@@ -205,6 +205,9 @@ public class Main {
                          Long chosenMercID = new Long(mercNIDP.getId(mercNum-1));
                          String chosenMercName = mercNIDP.getName(mercNum-1);
 
+                         System.out.println("=============================================");
+                         System.out.println("Here is the information for "+ chosenMercName);
+                         System.out.println("=============================================");
                          Helper.printMerchantResult(merc.searchForSpecificMerchant(chosenMercID));
 
                          System.out.println("\nThese are the options for " + chosenMercName);
@@ -291,7 +294,7 @@ public class Main {
                          }
                          //List of Terminals
                          else if(choiceForAMerchant.equals("5")){
-                            
+
                          }
                          //Delete Merchant
                          else if(choiceForAMerchant.equals("6")){
