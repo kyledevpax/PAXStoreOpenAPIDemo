@@ -9,6 +9,7 @@ import com.pax.market.api.sdk.java.api.terminalApk.TerminalApkApi;
 import com.pax.market.api.sdk.java.api.terminalApk.dto.CreateTerminalApkRequest;
 import sun.awt.image.ImageWatched;
 
+import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -99,7 +100,18 @@ public class Main {
                     //Create a function to Display the information for the Reseller and provide the option to Modify or Delete
 
                     String resellerChoice = scan.next();
+                    if(!isInteger(resellerChoice)){
+                        System.out.println("Invalid choice. Returning to main menu.");
+                        continue;
+                    }
+
+                    if((resNIDP.getTopIndex()+1)<Integer.parseInt(resellerChoice)) {
+                        System.out.println("Enter valid Input :|");
+                        continue;
+                    }
+
                     int resNum = Integer.parseInt(resellerChoice);
+
                     Long chosenResID = new Long(resNIDP.getId(resNum-1));
                     String chosenResName = resNIDP.getName(resNum-1);
 
@@ -120,9 +132,8 @@ public class Main {
 
                      //Modify Reseller information
                      if(choiceForAReseller.equals("1")){
-                         System.out.println("The current information for " + chosenResName + " is:");
                          Helper.printResellerResult(res.searchForSpecificReseller(chosenResID));
-                         System.out.println("Please Enter the updated information for the Reseller:");
+                         System.out.println("\n\nPlease Enter the updated information for the Reseller:");
 
                          System.out.print("Name: ");
                          String name = scan.next();
@@ -206,6 +217,11 @@ public class Main {
                          }
 
                          String merchantChoice = scan.next();
+                         if(!isInteger(merchantChoice)){
+                             System.out.println("Invalid choice. Returning to main menu.");
+                             continue;
+                         }
+
                          int mercNum = Integer.parseInt(merchantChoice);
                          Long chosenMercID = new Long(mercNIDP.getId(mercNum-1));
                          String chosenMercName = mercNIDP.getName(mercNum-1);
@@ -303,6 +319,11 @@ public class Main {
                              }
 
                              String terminalChoice = scan.next();
+                             if(!isInteger(terminalChoice)){
+                                 System.out.println("Invalid choice. Returning to main menu.");
+                                 continue;
+                             }
+
                              int termNum = Integer.parseInt(terminalChoice);
                              Long chosenTermID = new Long(termNIDP.getId(termNum-1));
                              String chosenTermName = termNIDP.getName(termNum-1);
@@ -465,6 +486,16 @@ public class Main {
 
 
     }
-
-
+    public static boolean isInteger(String s) {
+        int radix=10;
+        if(s==null) return false;
+        for(int i = 0; i < s.length(); i++) {
+            if(i == 0 && s.charAt(i) == '-') {
+                if(s.length() == 1) return false;
+                else continue;
+            }
+            if(Character.digit(s.charAt(i),radix) < 0) return false;
+        }
+        return true;
+    }
 }
