@@ -1,90 +1,200 @@
-/*
+
 
 import com.pax.market.api.sdk.java.api.base.dto.Result;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerDTO;
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerPageDTO;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+import com.pax.market.api.sdk.java.api.merchant.dto.MerchantCreateRequest;
+import com.pax.market.api.sdk.java.api.merchant.dto.MerchantUpdateRequest;
+import com.pax.market.api.sdk.java.api.reseller.dto.ResellerCreateRequest;
+import com.pax.market.api.sdk.java.api.reseller.dto.ResellerUpdateRequest;
+import com.pax.market.api.sdk.java.api.terminal.TerminalApi;
+import com.pax.market.api.sdk.java.api.terminal.dto.TerminalCreateRequest;
+import com.pax.market.api.sdk.java.api.terminal.dto.TerminalUpdateRequest;
+import com.pax.market.api.sdk.java.api.terminalApk.TerminalApkApi;
+import com.pax.market.api.sdk.java.api.terminalApk.dto.CreateTerminalApkRequest;
+import sun.awt.image.ImageWatched;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.LinkedHashMap;
+import java.util.Scanner;
+
+import static com.pax.market.api.sdk.java.api.terminal.TerminalApi.*;
+
 public class MainappUI extends Application{
+
+    Reseller res = new Reseller();
+    NameIdPairs resNIDP;
+    NameIdPairs mercNIDP;
+    NameIdPairs termNIDP;
+
+    Merchant merc = new Merchant();
+    Terminal term = new Terminal();
+    TerminalAPK termApk = new TerminalAPK();
+
+
+
+    private ListView<String> m_listView;
+
+
 
 	public static void main(String[] args) {
         launch(args);
     }
-    
+
     @Override
     public void start(Stage primaryStage) {
+
+        //============delete=============
+        final LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+        map.put("abc", "xyz");
+        //===========delete=============
+
         primaryStage.setTitle("Web API Demo");
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25,25,25,25));
-        
+
         Scene scene = new Scene(grid, 600, 500);
         primaryStage.setScene(scene);
-                
+
         Text scenetitle = new Text("Resellers");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle,  0,  0, 2, 1);
-        
+
         //Replace user name with list of Resellers
-        //Accordion reselleracc = new Accordion();
-        
-        
-        
-        
-        Label userName = new Label("User Name:");
-        grid.add(userName, 0, 1);
-        
+
+        HBox hbox = new HBox();
+        hbox.setSpacing(10);
+
+        resNIDP = res.getNameandIDofResellers();
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (int i =0; i<= resNIDP.getTopIndex();i++){
+            list.add(resNIDP.getName(i));
+        }
+
+        // create a list of items.
+        m_listView = new ListView<String>(FXCollections.observableArrayList(list));
+        m_listView.prefWidth(200);
+        m_listView.setMaxWidth(250);
+        m_listView.getSelectionModel().selectedItemProperty()
+                .addListener(new ChangeListener<String>() {
+
+                    public void changed(
+                            ObservableValue<? extends String> observable,
+                            String oldValue, String newValue) {
+                        // change the label text value to the newly selected
+                        // item.
+                        System.out.println(newValue);//change to a call
+                    }
+                });
+      /*  Text text = new Text();
+        resNIDP = res.getNameandIDofResellers();
+        for (int i =0; i<= resNIDP.getTopIndex();i++){
+            link.setText(resNIDP.getName(i));
+            final int finalI = i;
+            link.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    System.out.println(resNIDP.getName(finalI ));
+                }
+            });
+            System.out.println((i+1) +". "+ resNIDP.getName(i));
+            link.setLayoutX(8);
+            link.setLayoutY(8);
+            //textArea.setText(link);
+        }*/
+
+
+        grid.add(m_listView, 0, 1);
+
         Merchant mer = new Merchant();
         Reseller test = new Reseller();
-        Button addResellerbtn = new Button();
+        final Button addResellerbtn = new Button();
         addResellerbtn.setText("Add a Reseller");
         addResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
             public void handle(ActionEvent event) {
-            	//Replace with a function call
-            	mer.printMerc();
-                            }
+                addResellerWindow.display();
+            }
         });
-        grid.add(addResellerbtn, 1, 1);
-        
-        Label pw = new Label("Password:");
-        grid.add(pw,  0,  2);
-        
-        Button deleteResellerbtn = new Button();
+
+        final Button deleteResellerbtn = new Button();
         deleteResellerbtn.setText("Delete");
         deleteResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
-        	@Override
-        	public void handle(ActionEvent event) {
-        		//Call function to Delete the Reseller
-        		
-        		System.out.println("Reseller Deleted");
-        	}
+            public void handle(ActionEvent event) {
+
+            }
         });
-        grid.add(deleteResellerbtn, 1, 2);
-        
-        //root.getChildren().add(addResellerbtn);
-        //root.getChildren().add(deleteResellerbtn);
-        
-        
+
+        final Button activateResellerbtn = new Button();
+        activateResellerbtn.setText("Activate");
+        activateResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+
+            }
+        });
+
+        final Button deactivateResellerbtn = new Button();
+        deactivateResellerbtn.setText("Deactivate");
+        deactivateResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+
+            }
+        });
+
+        final Button showmercResellerbtn = new Button();
+        showmercResellerbtn.setText("Show merchants");
+        showmercResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+
+            }
+        });
+        //grid.setGridLinesVisible(true);
+        //grid.add(addResellerbtn, 1, 0);
+
+        //buttons for Reseller page
+        BorderPane border = new BorderPane();
+        border.setPadding(new Insets(20, 0, 20, 20));
+
+        addResellerbtn.setMaxWidth(Double.MAX_VALUE);
+        deleteResellerbtn.setMaxWidth(Double.MAX_VALUE);
+        deactivateResellerbtn.setMaxWidth(Double.MAX_VALUE);
+        activateResellerbtn.setMaxWidth(Double.MAX_VALUE);
+        showmercResellerbtn.setMaxWidth(Double.MAX_VALUE);
+
+        VBox vbButtons = new VBox();
+        vbButtons.setSpacing(10);
+        vbButtons.setPadding(new Insets(0, 20, 10, 20));
+        vbButtons.getChildren().addAll(addResellerbtn, deleteResellerbtn, activateResellerbtn, deactivateResellerbtn, showmercResellerbtn);
+
+        grid.add(vbButtons, 2,1);
+
         primaryStage.show();
     }
 }
 
-*/
+
