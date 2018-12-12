@@ -1,6 +1,9 @@
 import com.pax.market.api.sdk.java.api.reseller.dto.ResellerCreateRequest;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -17,7 +20,7 @@ import java.util.LinkedHashMap;
 public class addResellerWindow {
 
 
-    public static void display() {
+    public static void display(final Stage parentStage) {
 
         final Reseller res = new Reseller();
         //============delete=============
@@ -82,10 +85,21 @@ public class addResellerWindow {
 
         Button btn= new Button("Add Reseller");
         grid.add(btn, 1, 9);
+       /* popupwindow.setOnHidden(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent event) {
+                Parent root = FXMLLoader.load(getClass().getResource((parentStage)));
+                Scene scene=new Scene(root);
+                parentStage.SetScene(scene1);
+                parentStage.show();
+            }
+        });*/
+
+
         btn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             public void handle(ActionEvent event) {
                 ResellerCreateRequest request = res.createResellerRequest(resNameTF.getText(), resEmailTF.getText(), resCountryTF.getText(), resContactTF.getText(), resPhoneTF.getText(), resPostCodeTF.getText(), resAddressTF.getText(), resCompanyTF.getText(), null, map);
                 res.createAReseller(request);
+                MainappUI.m_listView.setItems(FXCollections.observableArrayList(MainappUI.getResellersList()));//refreshes the list
                 popupwindow.close();
             }
         });

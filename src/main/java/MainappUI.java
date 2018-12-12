@@ -14,6 +14,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -53,11 +55,11 @@ public class MainappUI extends Application{
     Merchant merc = new Merchant();
     Terminal term = new Terminal();
     TerminalAPK termApk = new TerminalAPK();
+    static TextArea resInfoTF = new TextArea();
+    Long selectedID = new Long(-1);
 
 
-
-    private ListView<String> m_listView;
-
+    static ListView<String> m_listView;
 
 
 	public static void main(String[] args) {
@@ -65,7 +67,7 @@ public class MainappUI extends Application{
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
 
         //============delete=============
         final LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
@@ -74,12 +76,12 @@ public class MainappUI extends Application{
 
         primaryStage.setTitle("Web API Demo");
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.TOP_LEFT);
+        grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25,25,25,25));
 
-        Scene scene = new Scene(grid, 600, 500);
+        final Scene scene = new Scene(grid, 600, 500);
         primaryStage.setScene(scene);
 
         Text scenetitle = new Text("Resellers");
@@ -109,27 +111,28 @@ public class MainappUI extends Application{
                             ObservableValue<? extends String> observable,
                             String oldValue, String newValue) {
                         // change the label text value to the newly selected
-                        // item.
-                        System.out.println(newValue);//change to a call
+                        // item
+                        for(int i=0; i<=resNIDP.getTopIndex();i++){
+                            if(resNIDP.getName(i).equals(newValue)){
+                                selectedID = new Long (resNIDP.getId(i));
+                            }
+
+                        }
+                        //System.out.println(newValue);//change to a call
+                        resInfoTF.setText(Helper.printResellerResultString(res.searchForSpecificReseller(selectedID)));
                     }
                 });
-      /*  Text text = new Text();
-        resNIDP = res.getNameandIDofResellers();
-        for (int i =0; i<= resNIDP.getTopIndex();i++){
-            link.setText(resNIDP.getName(i));
-            final int finalI = i;
-            link.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    System.out.println(resNIDP.getName(finalI ));
+
+        m_listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent mouseEvent) {
+                if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                    if(mouseEvent.getClickCount() == 2){
+                        System.out.println("Double clicked");// start merchant window
+                        displayMerchantWindow.display(selectedID);
+                    }
                 }
-            });
-            System.out.println((i+1) +". "+ resNIDP.getName(i));
-            link.setLayoutX(8);
-            link.setLayoutY(8);
-            //textArea.setText(link);
-        }*/
-
-
+            }
+        });
         grid.add(m_listView, 0, 1);
 
         Merchant mer = new Merchant();
@@ -138,7 +141,8 @@ public class MainappUI extends Application{
         addResellerbtn.setText("Add a Reseller");
         addResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                addResellerWindow.display();
+                addResellerWindow.display(primaryStage);
+
             }
         });
 
@@ -146,7 +150,7 @@ public class MainappUI extends Application{
         deleteResellerbtn.setText("Delete");
         deleteResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-
+                deleteResellerWindow.display(selectedID);
             }
         });
 
@@ -154,7 +158,7 @@ public class MainappUI extends Application{
         activateResellerbtn.setText("Activate");
         activateResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-
+                res.activateAReseller(selectedID);
             }
         });
 
@@ -162,15 +166,15 @@ public class MainappUI extends Application{
         deactivateResellerbtn.setText("Deactivate");
         deactivateResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-
+                res.disableAReseller(selectedID);
             }
         });
 
-        final Button showmercResellerbtn = new Button();
-        showmercResellerbtn.setText("Show merchants");
-        showmercResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
+        final Button resrefreshbtn = new Button();
+        resrefreshbtn.setText("Refresh");
+        resrefreshbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-
+                m_listView.setItems(FXCollections.observableArrayList(getResellersList()));//refreshes the list
             }
         });
         //grid.setGridLinesVisible(true);
@@ -184,16 +188,37 @@ public class MainappUI extends Application{
         deleteResellerbtn.setMaxWidth(Double.MAX_VALUE);
         deactivateResellerbtn.setMaxWidth(Double.MAX_VALUE);
         activateResellerbtn.setMaxWidth(Double.MAX_VALUE);
-        showmercResellerbtn.setMaxWidth(Double.MAX_VALUE);
+        resrefreshbtn.setMaxWidth(Double.MAX_VALUE);
+
+
+        Label resInfoL = new Label("Information");
+        resInfoTF.setMinWidth(200);
+        resInfoTF.setMinHeight(200);
+        resInfoTF.setPrefWidth(200);
+        resInfoTF.setPrefHeight(200);
 
         VBox vbButtons = new VBox();
         vbButtons.setSpacing(10);
         vbButtons.setPadding(new Insets(0, 20, 10, 20));
-        vbButtons.getChildren().addAll(addResellerbtn, deleteResellerbtn, activateResellerbtn, deactivateResellerbtn, showmercResellerbtn);
+        vbButtons.getChildren().addAll(addResellerbtn, deleteResellerbtn, activateResellerbtn, deactivateResellerbtn, resrefreshbtn, resInfoL, resInfoTF);
 
-        grid.add(vbButtons, 2,1);
+        grid.add(vbButtons, 2,1,2,2);
 
         primaryStage.show();
+    }
+
+    //Used to refresh the Reseller list
+    public static ArrayList<String> getResellersList(){
+        Reseller res=new Reseller();
+        NameIdPairs pairs=res.getNameandIDofResellers();
+
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (int i =0; i<= pairs.getTopIndex();i++){
+            list.add(pairs.getName(i));
+        }
+
+        return list;
     }
 }
 
