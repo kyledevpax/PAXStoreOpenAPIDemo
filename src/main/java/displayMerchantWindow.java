@@ -27,15 +27,15 @@ public class displayMerchantWindow {
     static NameIdPairs termNIDP;
     static TextArea mercInfoTF = new TextArea();
     static Long selectedID;
-
+    static ListView<String> merc_listView;
 
     public static void display(Long resID) {
 
         final Stage mercWindow = new Stage();
-        final Reseller res = new Reseller();
+        Reseller res = new Reseller();
         final Merchant merc = new Merchant();
         final Terminal term = new Terminal();
-        ListView<String> m_listView;
+        final String resName = res.searchForSpecificReseller(resID).getData().getName();
 
 
         mercWindow.initModality(Modality.APPLICATION_MODAL);
@@ -49,7 +49,7 @@ public class displayMerchantWindow {
         Scene scene = new Scene(grid, 600, 500);
         mercWindow.setScene(scene);
 
-        Text scenetitle = new Text(res.searchForSpecificReseller(resID).getData().getName()+ "'s Merchants");
+        Text scenetitle = new Text(resName + "'s Merchants");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle,  0,  0, 2, 1);
 
@@ -64,10 +64,10 @@ public class displayMerchantWindow {
         }
 
         // create a list of items.
-        m_listView = new ListView<String>(FXCollections.observableArrayList(list));
-        m_listView.prefWidth(200);
-        m_listView.setMaxWidth(250);
-        m_listView.getSelectionModel().selectedItemProperty()
+        merc_listView = new ListView<String>(FXCollections.observableArrayList(list));
+        merc_listView.prefWidth(200);
+        merc_listView.setMaxWidth(250);
+        merc_listView.getSelectionModel().selectedItemProperty()
                 .addListener(new ChangeListener<String>() {
 
                     public void changed(
@@ -86,7 +86,7 @@ public class displayMerchantWindow {
                     }
                 });
 
-        m_listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        merc_listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
                     if(mouseEvent.getClickCount() == 2){
@@ -96,13 +96,14 @@ public class displayMerchantWindow {
                 }
             }
         });
-        grid.add(m_listView, 0, 1);
+        grid.add(merc_listView, 0, 1);
 
         final Button addMerchantbtn = new Button();
         addMerchantbtn.setText("Add a Merchant");
         addMerchantbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                //addResellerWindow.display();
+                addMerchantWindow.display(resName);
+
             }
         });
 
@@ -111,6 +112,7 @@ public class displayMerchantWindow {
         deleteMerchantbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 //deleteResellerWindow.display(selectedID);
+
             }
         });
 
@@ -119,6 +121,7 @@ public class displayMerchantWindow {
         activateMerchantbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 //res.activateAReseller(selectedID);
+                refreshmerc();
             }
         });
 
@@ -127,6 +130,7 @@ public class displayMerchantWindow {
         deactivateMerchantbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 //res.disableAReseller(selectedID);
+                refreshmerc();
             }
         });
 
@@ -134,11 +138,9 @@ public class displayMerchantWindow {
         resrefmerchbtn.setText("Refresh");
         resrefmerchbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-
+                refreshmerc();
             }
         });
-        //grid.setGridLinesVisible(true);
-        //grid.add(addResellerbtn, 1, 0);
 
         //buttons for Reseller page
         BorderPane border = new BorderPane();
@@ -164,10 +166,27 @@ public class displayMerchantWindow {
 
         grid.add(vbButtons, 2,1,2,2);
 
-        mercWindow.show();
+        //mercWindow.show();
 
         mercWindow.setScene(scene);
-        //mercWindow.showAndWait();
+        mercWindow.showAndWait();
 
+    }
+    //refreshes merchant list
+    public static ArrayList<String> getMerchantList(String resName){
+        Merchant merc = new Merchant();
+        NameIdPairs pairs = merc.getNameandIDofMerchants(resName);
+
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i =0; i<= pairs.getTopIndex();i++){
+            list.add(pairs.getName(i));
+        }
+        return list;
+    }
+
+    public static void refreshmerc(){
+        Merchant merc = new Merchant();
+        mercInfoTF.setText("");
+        mercInfoTF.setText(Helper.printMerchantResultString(merc.searchForSpecificMerchant(selectedID)));
     }
 }

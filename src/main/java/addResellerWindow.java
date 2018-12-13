@@ -100,6 +100,7 @@ public class addResellerWindow {
                 ResellerCreateRequest request = res.createResellerRequest(resNameTF.getText(), resEmailTF.getText(), resCountryTF.getText(), resContactTF.getText(), resPhoneTF.getText(), resPostCodeTF.getText(), resAddressTF.getText(), resCompanyTF.getText(), null, map);
                 res.createAReseller(request);
                 MainappUI.m_listView.setItems(FXCollections.observableArrayList(MainappUI.getResellersList()));//refreshes the list
+                //MainappUI.refresh();
                 popupwindow.close();
             }
         });

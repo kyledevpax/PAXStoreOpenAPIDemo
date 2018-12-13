@@ -56,7 +56,7 @@ public class MainappUI extends Application{
     Terminal term = new Terminal();
     TerminalAPK termApk = new TerminalAPK();
     static TextArea resInfoTF = new TextArea();
-    Long selectedID = new Long(-1);
+    static Long selectedID = new Long(-1);
 
 
     static ListView<String> m_listView;
@@ -159,6 +159,7 @@ public class MainappUI extends Application{
         activateResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 res.activateAReseller(selectedID);
+                refresh();
             }
         });
 
@@ -167,6 +168,7 @@ public class MainappUI extends Application{
         deactivateResellerbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 res.disableAReseller(selectedID);
+                refresh();
             }
         });
 
@@ -175,6 +177,7 @@ public class MainappUI extends Application{
         resrefreshbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 m_listView.setItems(FXCollections.observableArrayList(getResellersList()));//refreshes the list
+                refresh();
             }
         });
         //grid.setGridLinesVisible(true);
@@ -213,12 +216,16 @@ public class MainappUI extends Application{
         NameIdPairs pairs=res.getNameandIDofResellers();
 
         ArrayList<String> list = new ArrayList<String>();
-
         for (int i =0; i<= pairs.getTopIndex();i++){
             list.add(pairs.getName(i));
         }
-
         return list;
+    }
+
+    public static void refresh(){
+	    Reseller res = new Reseller();
+	    resInfoTF.setText("");
+        resInfoTF.setText(Helper.printResellerResultString(res.searchForSpecificReseller(selectedID)));
     }
 }
 
