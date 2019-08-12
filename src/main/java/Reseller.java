@@ -22,10 +22,9 @@ public class Reseller {
     }
 
     public NameIdPairs getNameandIDofResellers(){
-        NameIdPairs pairs;
         Result<ResellerPageDTO> result=reseller.searchReseller(1,100,null,null,null);
         List<ResellerPageDTO> pages=result.getPageInfo().getDataSet();
-        pairs=new NameIdPairs(pages.size());
+        NameIdPairs pairs = new NameIdPairs(pages.size());
         int i=0;
         for(ResellerPageDTO page:pages){
            pairs.setId(i,page.getId());

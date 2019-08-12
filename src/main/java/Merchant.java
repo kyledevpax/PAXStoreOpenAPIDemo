@@ -70,7 +70,7 @@ public class Merchant {
         request.setPostcode(postCode);
         request.setAddress(address);
         request.setDescription(description);
-        // No way to set the create user flag? no function present in merchant create request
+        // No way to set the create user flag? no function present in merchant create request?
 
         request.setMerchantCategoryNames(merchantCategoryCodes);
         request.setEntityAttributeValues(entityAttributeValues);
