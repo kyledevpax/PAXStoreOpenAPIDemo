@@ -116,7 +116,6 @@ public class MainappUI extends Application{
                             if(resNIDP.getName(i).equals(newValue)){
                                 selectedID = new Long (resNIDP.getId(i));
                             }
-
                         }
                         //System.out.println(newValue);//change to a call
                         resInfoTF.setText(Helper.printResellerResultString(res.searchForSpecificReseller(selectedID)));

@@ -18,8 +18,14 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.hibernate.validator.internal.util.logging.Log;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
+/*Display a list of Merchant under a selected Reseller
+*
+* */
 
 public class displayMerchantWindow {
 
@@ -81,7 +87,6 @@ public class displayMerchantWindow {
                             }
 
                         }
-                        //System.out.println(newValue);//change to a call
                         mercInfoTF.setText(Helper.printMerchantResultString(merc.searchForSpecificMerchant(selectedID)));
                     }
                 });
@@ -98,6 +103,9 @@ public class displayMerchantWindow {
         });
         grid.add(merc_listView, 0, 1);
 
+
+        //The print line statements in each listener are for error reporting
+        //TODO implement a better system for error logging
         final Button addMerchantbtn = new Button();
         addMerchantbtn.setText("Add a Merchant");
         addMerchantbtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -111,8 +119,7 @@ public class displayMerchantWindow {
         deleteMerchantbtn.setText("Delete");
         deleteMerchantbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                //deleteResellerWindow.display(selectedID);
-
+                System.out.println("Delete Merchant: " + merc.deleteAMerchant(selectedID));
             }
         });
 
@@ -120,7 +127,7 @@ public class displayMerchantWindow {
         activateMerchantbtn.setText("Activate");
         activateMerchantbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                //res.activateAReseller(selectedID);
+                System.out.println("activateMerchant: "+merc.activateAMerchant(selectedID));
                 refreshmerc();
             }
         });
@@ -129,7 +136,7 @@ public class displayMerchantWindow {
         deactivateMerchantbtn.setText("Deactivate");
         deactivateMerchantbtn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                //res.disableAReseller(selectedID);
+                System.out.println("deactivateMerchant: "+ merc.disableAMerchant(selectedID));
                 refreshmerc();
             }
         });
@@ -187,6 +194,8 @@ public class displayMerchantWindow {
     public static void refreshmerc(){
         Merchant merc = new Merchant();
         mercInfoTF.setText("");
+
+        System.out.println(merc.searchForSpecificMerchant(selectedID));
         mercInfoTF.setText(Helper.printMerchantResultString(merc.searchForSpecificMerchant(selectedID)));
     }
 }

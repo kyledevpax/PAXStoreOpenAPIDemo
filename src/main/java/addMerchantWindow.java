@@ -21,6 +21,10 @@ import javafx.stage.Stage;
 
 import java.util.LinkedHashMap;
 
+/*This class is called when you click the Add Merchant button on a Reseller's page
+*
+*Displays Merchant parameters necessary for creating a Merchant
+* */
 public class addMerchantWindow {
 
 
@@ -30,7 +34,7 @@ public class addMerchantWindow {
         final Reseller res = new Reseller();
         final Merchant merc = new Merchant();
         //============delete=============
-        final LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+        final LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();//This is for entityAttributeValues
         map.put("abc", "xyz");
         //===========delete=============
 
@@ -107,8 +111,8 @@ public class addMerchantWindow {
 
         btn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                MerchantCreateRequest request = merc.CreateMerchantRequest(mercNameTF.getText(), mercEmailTF.getText(),resName, mercContactTF.getText(), mercCountryTF.getText(), mercPhoneTF.getText(), mercPostCodeTF.getText(), mercAddressTF.getText(), mercDescriptionTF.getText(), true,  null, null);
-                merc.createAMerchant(request);
+                MerchantCreateRequest request = merc.CreateMerchantRequest(mercNameTF.getText(), mercEmailTF.getText(),resName, mercContactTF.getText(), mercCountryTF.getText(), mercPhoneTF.getText(), mercPostCodeTF.getText(), mercAddressTF.getText(), mercDescriptionTF.getText(), true,  null, map);
+                System.out.println(merc.createAMerchant(request));
                 displayMerchantWindow.merc_listView.setItems(FXCollections.observableArrayList(displayMerchantWindow.getMerchantList(resName)));//refreshes the list
                 popupwindow.close();
             }

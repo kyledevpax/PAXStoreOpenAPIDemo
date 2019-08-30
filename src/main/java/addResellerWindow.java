@@ -16,7 +16,10 @@ import javafx.stage.*;
 
 import java.util.LinkedHashMap;
 
-
+/*This class is called when you click the Add Reseller button on the home page
+ *
+ *Displays Reseller parameters necessary for creating a Reseller
+ * */
 public class addResellerWindow {
 
 
@@ -24,7 +27,7 @@ public class addResellerWindow {
 
         final Reseller res = new Reseller();
         //============delete=============
-        final LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+        final LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();//used for entityAttributeValues
         map.put("abc", "xyz");
         //===========delete=============
 

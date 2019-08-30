@@ -7,6 +7,7 @@ import com.pax.market.api.sdk.java.api.merchant.dto.MerchantDTO;
 import com.pax.market.api.sdk.java.api.merchant.dto.MerchantPageDTO;
 import com.pax.market.api.sdk.java.api.merchant.dto.MerchantUpdateRequest;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -56,6 +57,10 @@ public class Merchant {
     }
 
     public Result<MerchantDTO> createAMerchant(MerchantCreateRequest request){
+       /* LinkedHashMap<String, String> hashy= new LinkedHashMap<String, String>();
+
+        hashy.put("test","is this");
+        request.setEntityAttributeValues(hashy);*/
         return merchantApi.createMerchant(request);
     }
 

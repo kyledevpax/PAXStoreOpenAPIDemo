@@ -18,6 +18,10 @@ import javafx.stage.Stage;
 
 import java.util.LinkedHashMap;
 
+/*Confirmation page for deleting a Reseller
+*
+* */
+
 public class deleteResellerWindow {
 
     public static void display(final Long idToDelete) {
